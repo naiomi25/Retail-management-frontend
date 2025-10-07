@@ -124,7 +124,7 @@ export const Login = () => {
             </Typography>
           )}
           <Typography
-            endDecorator={<Link href="/sign-up">Sign up</Link>}
+            endDecorator={<Link href="/register">Sign up</Link>}
             sx={{ fontSize: 'sm', alignSelf: 'center' }}
           >
             Don&apos;t have an account?

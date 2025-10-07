@@ -8,9 +8,9 @@ export  const loginUser = (email, password) => {
 }
 
 export const registerUser = (newUser) =>{
-  return apiUser("/user/register",{
+  return apiUser("/users/register",{
      method: "POST",
-    body: { newUser },
+    body:  newUser ,
   });
 }
 
