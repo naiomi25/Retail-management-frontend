@@ -6,3 +6,12 @@ export  const loginUser = (email, password) => {
     body: { email, password },
   });
 }
+
+export const registerUser = (newUser) =>{
+  return apiUser("/user/register",{
+     method: "POST",
+    body: { newUser },
+  });
+}
+
+
