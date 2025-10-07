@@ -5,11 +5,13 @@ import {Login} from "./pages/Login";
 import Dashboard from "./pages/DashboardProfile";
 // import CreateEntry from "./pages/CreateEntry";
 // import EditEntry from "./pages/EditEntry";
+import { Home } from "./pages/Home";
 
 export default function AppRoutes() {
   return (
     <Routes>
       {/* {/* Rutas públicas */}
+      <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} /> 
       {/* <Route path="/register" element={<Register />} />  */}
 
