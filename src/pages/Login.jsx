@@ -1,7 +1,7 @@
 
 import * as React from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-import Sheet from '@mui/joy/Sheet';
+import { CssVarsProvider, useColorScheme } from "@mui/joy";
+import Sheet from "@mui/joy/Sheet";
 import CssBaseline from '@mui/joy/CssBaseline';
 import Typography from '@mui/joy/Typography';
 import FormControl from '@mui/joy/FormControl';
