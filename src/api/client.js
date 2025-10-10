@@ -20,4 +20,6 @@ import { API_URL } from "./config";
   }
 
   return response.json();
+
 }
+

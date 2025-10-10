@@ -1,0 +1,167 @@
+import React, { useState } from 'react';
+import { CalendarOnly } from './calendar';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Input from '@mui/joy/Input';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
+import Button from '@mui/joy/Button';
+
+// import dayjs from 'dayjs';
+// import { useState } from 'react';
+import { CssVarsProvider, } from '@mui/joy/styles';
+import Sheet from "@mui/joy/Sheet";
+import CssBaseline from "@mui/joy/CssBaseline";
+
+
+
+export const EntryForm = ({initialData,onSubmit} ) => {
+
+const [form, setForm] = useState({
+  date: initialData?.date || '',
+  shift:initialData?.shift || 'Morning',
+  net_sales:initialData?.net_sales || 0,
+  transactions:initialData?.transactions || 0,
+  articles: initialData?.articles || 0,
+  accessories: initialData?.accessories || 0,
+  apparel: initialData?.apparel || 0,
+  footfall: initialData?.footfall || 0
+})
+
+
+const handleSubmit = async(e) =>{
+    e.preventDefault()
+    const success = await onSubmit(form);
+      if (success && !initialData) {
+     setForm({
+        date: "",
+        shift: "Morning",
+        net_sales: 0,
+        transactions: 0,
+        articles: 0,
+        accessories: 0,
+        apparel: 0,
+        footfall: 0,
+      });
+  }
+};
+
+    
+    return (
+   <form onSubmit={handleSubmit}>
+      <CssVarsProvider>
+        <CssBaseline />
+        <Sheet
+          sx={{
+            width: 400,
+            mx: "auto",
+            my: 4,
+            py: 3,
+            px: 2,
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+            borderRadius: "sm",
+            boxShadow: "md",
+          }}
+        >
+          <Typography level="h5" component="h2">
+             {initialData ? "Editar Entrada" : "Nueva Entrada"}
+            
+          </Typography>
+
+          <Stack spacing={2}>
+            <FormControl>
+              <FormLabel>Fecha</FormLabel>
+              <CalendarOnly
+                value={form.date}
+                onChange={(date) => setForm({ ...form, date })}
+              />
+            </FormControl>
+
+            <FormControl>
+              <FormLabel>Turno</FormLabel>
+              <Select
+                value={form.shift}
+                onChange={(e, value) => setForm({ ...form, shift: value })}
+              >
+                <Option value="Morning">Morning</Option>
+                <Option value="Evening">Evening</Option>
+              </Select>
+            </FormControl>
+
+            <FormControl>
+              <FormLabel>Net Sales</FormLabel>
+              <Input
+                type="number"
+                value={form.net_sales}
+                onChange={(e) =>
+                  setForm({ ...form, net_sales: Number(e.target.value) })
+                }
+              />
+            </FormControl>
+
+            <FormControl>
+              <FormLabel>Transactions</FormLabel>
+              <Input
+                type="number"
+                value={form.transactions}
+                onChange={(e) =>
+                  setForm({ ...form, transactions: Number(e.target.value) })
+                }
+              />
+            </FormControl>
+
+            <FormControl>
+              <FormLabel>Articles</FormLabel>
+              <Input
+                type="number"
+                value={form.articles}
+                onChange={(e) =>
+                  setForm({ ...form, articles: Number(e.target.value) })
+                }
+              />
+            </FormControl>
+
+            <FormControl>
+              <FormLabel>Accessories</FormLabel>
+              <Input
+                type="number"
+                value={form.accessories}
+                onChange={(e) =>
+                  setForm({ ...form, accessories: Number(e.target.value) })
+                }
+              />
+            </FormControl>
+
+            <FormControl>
+              <FormLabel>Apparel</FormLabel>
+              <Input
+                type="number"
+                value={form.apparel}
+                onChange={(e) =>
+                  setForm({ ...form, apparel: Number(e.target.value) })
+                }
+              />
+            </FormControl>
+
+            <FormControl>
+              <FormLabel>Footfall</FormLabel>
+              <Input
+                type="number"
+                value={form.footfall}
+                onChange={(e) =>
+                  setForm({ ...form, footfall: Number(e.target.value) })
+                }
+              />
+            </FormControl>
+          </Stack>
+
+          <Button type="submit">{initialData ? "Actualizar" : "Crear"}</Button>
+        </Sheet>
+      </CssVarsProvider>
+    </form>
+  );
+};
