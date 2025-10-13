@@ -2,16 +2,26 @@ import { LocalizationProvider, DateCalendar } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import dayjs from 'dayjs';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export const CalendarOnly = ({calendarDay}) => {
-  const [selectedDate, setSelectedDate] = useState(dayjs());
+export const CalendarOnly = ({ value, onChange }) => {
+  const initial = value ? dayjs(value) : dayjs();
+  const [selectedDate, setSelectedDate] = useState(initial);
 
-  const handleChangeDay = (day)=>{
-    setSelectedDate(day)
-    calendarDay(day)
+  useEffect(() => {
+    if (value) {
+      const parsed = dayjs(value);
+      if (parsed.isValid()) setSelectedDate(parsed);
+    }
+  }, [value]);
 
-  }
+  const handleChangeDay = (day) => {
+    setSelectedDate(day);
+    if (typeof onChange === 'function') {
+     
+      onChange(day.format('YYYY-MM-DD'));
+    }
+  };
 
   const lightTheme = createTheme({
     palette: {

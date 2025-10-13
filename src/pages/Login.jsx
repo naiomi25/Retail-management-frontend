@@ -13,6 +13,7 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import { useState } from "react";
 import { loginUser } from "../api/auth";
+import { useNavigate } from 'react-router-dom';
 
 function ModeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -43,6 +44,7 @@ function ModeToggle() {
 
 export const Login = () => {
 
+  const navigate = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -51,9 +53,14 @@ export const Login = () => {
   const handleLogin = async () => {
     try {
       const data = await loginUser(email, password);
-      setToken(data.access_token);
+     
+      if (data.access_token) {
+        localStorage.setItem("token", data.access_token);
+        setToken(data.access_token);
+      }
       setError(null);
       console.log("Token recibido:", data.access_token);
+      navigate('/');
     } catch (err) {
       setError('Correo o contraseña incorrecta, por favor vuelve a intentarlo');
     }
@@ -108,10 +115,10 @@ export const Login = () => {
             variant="solid"
             sx={{
               mt: 1,
-              backgroundColor: '#2ecc40',       // color normal
+              backgroundColor: '#2ecc40',      
               color: 'white',
               '&:hover': {
-                backgroundColor: '#e622e6',     // color al pasar el ratón
+                backgroundColor: '#e622e6',    
               },
             }}
           >

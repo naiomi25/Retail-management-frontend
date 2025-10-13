@@ -53,6 +53,7 @@ export const Register = () => {
       if (response.access_token) {
         localStorage.setItem("token", response.access_token);
         setSuccess("Registro exitoso. Sesión iniciada.");
+        // añadir un redireccionamento al login
       } else {
         setSuccess("Registro exitoso.");
       }

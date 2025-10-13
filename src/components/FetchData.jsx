@@ -36,6 +36,8 @@ export const EntriesList = ({ }) => {
                 averages_by_shift: data.averages_by_shift || {},
                 sums_by_shift: data.sums_by_shift || {}
             });
+            console.log('data del back-end',data);
+            
 
         } catch (err) {
             console.error(err);
