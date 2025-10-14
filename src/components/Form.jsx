@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import dayjs from 'dayjs';
 import { CalendarOnly } from './calendar';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
@@ -8,36 +9,34 @@ import Input from '@mui/joy/Input';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Button from '@mui/joy/Button';
-
-// import dayjs from 'dayjs';
-// import { useState } from 'react';
 import { CssVarsProvider, } from '@mui/joy/styles';
 import Sheet from "@mui/joy/Sheet";
 import CssBaseline from "@mui/joy/CssBaseline";
 
 
 
-export const EntryForm = ({initialData,onSubmit} ) => {
+export const EntryForm = ({ initialData, onSubmit }) => {
 
-const [form, setForm] = useState({
-  date: initialData?.date || '',
-  shift:initialData?.shift || 'Morning',
-  net_sales:initialData?.net_sales || 0,
-  transactions:initialData?.transactions || 0,
-  articles: initialData?.articles || 0,
-  accessories: initialData?.accessories || 0,
-  apparel: initialData?.apparel || 0,
-  footfall: initialData?.footfall || 0
-})
+  const [form, setForm] = useState({
+   
+    date: initialData?.date || dayjs().format('YYYY-MM-DD'),
+    shift: initialData?.shift || 'morning',
+    net_sales: initialData?.net_sales || '',
+    transactions: initialData?.transactions || '',
+    articles: initialData?.articles || '',
+    accessories: initialData?.accessories || '',
+    apparel: initialData?.apparel || '',
+    footfall: initialData?.footfall || ''
+  })
 
 
-const handleSubmit = async(e) =>{
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const success = await onSubmit(form);
-      if (success && !initialData) {
-     setForm({
-        date: "",
-        shift: "Morning",
+    if (success && !initialData) {
+      setForm({
+        date: dayjs().format('YYYY-MM-DD'),
+        shift: "morning",
         net_sales: 0,
         transactions: 0,
         articles: 0,
@@ -45,12 +44,12 @@ const handleSubmit = async(e) =>{
         apparel: 0,
         footfall: 0,
       });
-  }
-};
+    }
+  };
 
-    
-    return (
-   <form onSubmit={handleSubmit}>
+
+  return (
+    <form onSubmit={handleSubmit}>
       <CssVarsProvider>
         <CssBaseline />
         <Sheet
@@ -68,8 +67,8 @@ const handleSubmit = async(e) =>{
           }}
         >
           <Typography level="h5" component="h2">
-             {initialData ? "Editar Entrada" : "Nueva Entrada"}
-            
+            {initialData ? "Editar Entrada" : "Nueva Entrada"}
+
           </Typography>
 
           <Stack spacing={2}>
@@ -87,8 +86,8 @@ const handleSubmit = async(e) =>{
                 value={form.shift}
                 onChange={(e, value) => setForm({ ...form, shift: value })}
               >
-                <Option value="Morning">Morning</Option>
-                <Option value="Evening">Evening</Option>
+                <Option value="morning">Morning</Option>
+                <Option value="evening">Evening</Option>
               </Select>
             </FormControl>
 
