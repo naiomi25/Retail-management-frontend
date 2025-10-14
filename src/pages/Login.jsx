@@ -50,10 +50,11 @@ export const Login = () => {
   const [error, setError] = useState(null);
   const [token, setToken] = useState(null);
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
       const data = await loginUser(email, password);
-     
+
       if (data.access_token) {
         localStorage.setItem("token", data.access_token);
         setToken(data.access_token);
@@ -92,38 +93,44 @@ export const Login = () => {
             </Typography>
             <Typography level="body-sm">Sign in to continue.</Typography>
           </div>
-          <FormControl>
-            <FormLabel>Email</FormLabel>
-            <Input
-              label="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="johndoe@email.com"
-            />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Password</FormLabel>
-            <Input
-              label="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </FormControl>
-          <Button
-            onClick={handleLogin}
-            variant="solid"
-            sx={{
-              mt: 1,
-              backgroundColor: '#2ecc40',      
-              color: 'white',
-              '&:hover': {
-                backgroundColor: '#e622e6',    
-              },
-            }}
-          >
-            Log in
-          </Button>
+          <form onSubmit={handleLogin}>
+            <FormControl>
+              <FormLabel>Email</FormLabel>
+              <Input
+                name="email"
+                autoComplete="email"
+                label="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="johndoe@email.com"
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Password</FormLabel>
+              <Input
+                name="current-password"
+                autoComplete="current-password"
+                label="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </FormControl>
+            <Button
+              type="submit"
+              variant="solid"
+              sx={{
+                mt: 1,
+                backgroundColor: '#2ecc40',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: '#e622e6',
+                },
+              }}
+            >
+              Log in
+            </Button>
+          </form>
 
           {error && (
             <Typography sx={{ color: "red", fontSize: "sm" }}>

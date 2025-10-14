@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import { CalendarOnly } from './calendar';
 import { useState } from 'react';
 import { apiUser } from '../api/client';
-import { Button, Stack, Grid, Typography} from '@mui/material';
+import { Button, Stack, Grid, Typography } from '@mui/material';
 
 import { Entries } from './Entries';
 import { Sums } from './Sums';
@@ -14,8 +14,9 @@ import { TotalsCards } from './TotalsCards';
 export const EntriesList = ({ }) => {
 
 
-    const [startDate, setStartDate] = useState(dayjs());
-    const [endDate, setEndDate] = useState(dayjs());
+   
+    const [startDate, setStartDate] = useState(dayjs().format('YYYY-MM-DD'));
+    const [endDate, setEndDate] = useState(dayjs().format('YYYY-MM-DD'));
 
 
     const [entries, setEntries] = useState([])
@@ -29,15 +30,15 @@ export const EntriesList = ({ }) => {
         setError('');
         try {
 
-            const data = await apiUser(`/entries/range/?start_date=${startDate.format('YYYY-MM-DD')}&end_date=${endDate.format('YYYY-MM-DD')}`)
+            const data = await apiUser(`/entries/range/?start_date=${startDate}&end_date=${endDate}`)
             setEntries(data.entries || [])
             setTotals({
                 total_entries: data.total_entries || 0,
                 averages_by_shift: data.averages_by_shift || {},
                 sums_by_shift: data.sums_by_shift || {}
             });
-            console.log('data del back-end',data);
-            
+            console.log('data del back-end', data);
+
 
         } catch (err) {
             console.error(err);
@@ -53,10 +54,10 @@ export const EntriesList = ({ }) => {
             {/* Fechas y botón */}
             <Grid container spacing={2} alignItems="center">
                 <Grid item xs={12} sm={5}>
-                    <CalendarOnly calendarDay={(day) => setStartDate(day)} />
+                    <CalendarOnly value={startDate} onChange={(dateStr) => setStartDate(dateStr)} />
                 </Grid>
                 <Grid item xs={12} sm={5}>
-                    <CalendarOnly calendarDay={(day) => setEndDate(day)} />
+                    <CalendarOnly value={endDate} onChange={(dateStr) => setEndDate(dateStr)} />
                 </Grid>
                 <Grid item xs={12} sm={2}>
                     <Button fullWidth variant="contained" onClick={fetchEntries}>

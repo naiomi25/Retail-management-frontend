@@ -18,15 +18,15 @@ import CssBaseline from "@mui/joy/CssBaseline";
 export const EntryForm = ({ initialData, onSubmit }) => {
 
   const [form, setForm] = useState({
-    // ensure date is a YYYY-MM-DD string; default to today when creating
+   
     date: initialData?.date || dayjs().format('YYYY-MM-DD'),
     shift: initialData?.shift || 'morning',
-    net_sales: initialData?.net_sales || 0,
-    transactions: initialData?.transactions || 0,
-    articles: initialData?.articles || 0,
-    accessories: initialData?.accessories || 0,
-    apparel: initialData?.apparel || 0,
-    footfall: initialData?.footfall || 0
+    net_sales: initialData?.net_sales || '',
+    transactions: initialData?.transactions || '',
+    articles: initialData?.articles || '',
+    accessories: initialData?.accessories || '',
+    apparel: initialData?.apparel || '',
+    footfall: initialData?.footfall || ''
   })
 
 
