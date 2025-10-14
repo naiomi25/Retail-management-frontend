@@ -8,17 +8,18 @@ import { Entries } from './Entries';
 import { Sums } from './Sums';
 import { Average } from './Averages';
 import { TotalsCards } from './TotalsCards';
+import { EditEntry } from '../pages/EditEntry';
 
 
 
 export const EntriesList = ({ }) => {
 
 
-   
+
     const [startDate, setStartDate] = useState(dayjs().format('YYYY-MM-DD'));
     const [endDate, setEndDate] = useState(dayjs().format('YYYY-MM-DD'));
 
-
+    const [editEntry, setEditEntry] = useState(null)
     const [entries, setEntries] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
@@ -45,6 +46,16 @@ export const EntriesList = ({ }) => {
             setError('Error al cargar las entradas');
         } finally {
             setLoading(false);
+        }
+    };
+    const handleEdit = (entry) => setEditEntry(entry);
+    const handleSave = async (id, formData) => {
+        try {
+            await apiUser(`/entries/modify/${id}`, { method: 'PUT', body: formData });
+            fetchEntries(); 
+        } catch (err) {
+            console.error(err);
+            setError('Error al actualizar la entrada');
         }
     };
 
@@ -84,11 +95,13 @@ export const EntriesList = ({ }) => {
             </Grid>
 
             {/* Entradas individuales */}
-            <Entries entries={entries} />
+            <Entries entries={entries} onEdit={setEditEntry} />
 
 
             {loading && <Typography>Cargando...</Typography>}
             {error && <Typography color="error">{error}</Typography>}
+            {editEntry && (
+                <EditEntry entry={editEntry}  open={!!editEntry} onClose={() => setEditEntry(null)} onSave={handleSave} />)}
         </Stack>
     );
 }
