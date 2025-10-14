@@ -15,10 +15,10 @@ import CssBaseline from "@mui/joy/CssBaseline";
 
 
 
-export const EntryForm = ({ initialData, onSubmit }) => {
+export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
 
   const [form, setForm] = useState({
-   
+
     date: initialData?.date || dayjs().format('YYYY-MM-DD'),
     shift: initialData?.shift || 'morning',
     net_sales: initialData?.net_sales || '',
@@ -72,13 +72,15 @@ export const EntryForm = ({ initialData, onSubmit }) => {
           </Typography>
 
           <Stack spacing={2}>
-            <FormControl>
-              <FormLabel>Fecha</FormLabel>
-              <CalendarOnly
-                value={form.date}
-                onChange={(date) => setForm({ ...form, date })}
-              />
-            </FormControl>
+            {showCalendar && (
+              <FormControl>
+                <FormLabel>Fecha</FormLabel>
+                <CalendarOnly
+                  value={form.date}
+                  onChange={(date) => setForm({ ...form, date })}
+                />
+              </FormControl>
+            )}
 
             <FormControl>
               <FormLabel>Turno</FormLabel>
