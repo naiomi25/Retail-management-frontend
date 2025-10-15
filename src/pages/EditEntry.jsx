@@ -2,7 +2,6 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { EntryForm } from "../components/Form";
 
-// Proper functional component that accepts props: entry, open, onClose, onSave
 export const EditEntry = ({ entry, open, onClose, onSave }) => {
     const handleSubmit = async (formData) => {
         if (typeof onSave === 'function') await onSave(entry.id, formData);
@@ -24,7 +23,7 @@ export const EditEntry = ({ entry, open, onClose, onSave }) => {
     return (
         <Modal open={!!open} onClose={onClose}>
             <Box sx={style}>
-git switch                 <EntryForm initialData={entry} onSubmit={handleSubmit} showCalendar={false} />
+               <EntryForm initialData={entry} onSubmit={handleSubmit} showCalendar={false} />
             </Box>
         </Modal>
     );

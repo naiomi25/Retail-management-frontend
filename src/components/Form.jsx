@@ -94,7 +94,7 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
             </FormControl>
 
             <FormControl>
-              <FormLabel>Net Sales</FormLabel>
+              <FormLabel>Ventas netas</FormLabel>
               <Input
                 type="number"
                 value={form.net_sales}
@@ -105,7 +105,7 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
             </FormControl>
 
             <FormControl>
-              <FormLabel>Transactions</FormLabel>
+              <FormLabel>Transacciones</FormLabel>
               <Input
                 type="number"
                 value={form.transactions}
@@ -116,7 +116,7 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
             </FormControl>
 
             <FormControl>
-              <FormLabel>Articles</FormLabel>
+              <FormLabel>Articulos</FormLabel>
               <Input
                 type="number"
                 value={form.articles}
@@ -127,7 +127,7 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
             </FormControl>
 
             <FormControl>
-              <FormLabel>Accessories</FormLabel>
+              <FormLabel>Accesorios</FormLabel>
               <Input
                 type="number"
                 value={form.accessories}
@@ -138,7 +138,7 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
             </FormControl>
 
             <FormControl>
-              <FormLabel>Apparel</FormLabel>
+              <FormLabel>Ropa</FormLabel>
               <Input
                 type="number"
                 value={form.apparel}
@@ -149,7 +149,7 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
             </FormControl>
 
             <FormControl>
-              <FormLabel>Footfall</FormLabel>
+              <FormLabel>Clientes</FormLabel>
               <Input
                 type="number"
                 value={form.footfall}

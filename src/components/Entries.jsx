@@ -1,7 +1,7 @@
 
-import { Stack, Card, CardContent, Typography, Button } from "@mui/material";
+import { Stack, Card, CardContent, Typography, Button, Box } from "@mui/material";
 
-export const Entries = ({ entries, onEdit }) => {
+export const Entries = ({ entries, onEdit, onDelete }) => {
     if (!entries.length) return <Typography>No hay entradas disponibles</Typography>;
 
     return (
@@ -21,14 +21,22 @@ export const Entries = ({ entries, onEdit }) => {
                         <Typography>upt: {entry.upt}</Typography>
                         <Typography>cr: {entry.cr}</Typography>
 
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            sx={{ mt: 1 }}
-                            onClick={() => onEdit(entry)}
-                        >
-                            Editar
-                        </Button>
+                        <Box sx={{ mt: 1, display: 'flex', gap: 1 }}>
+                            <Button
+                                variant="contained"
+                                color="secondary"
+                                onClick={() => onEdit(entry)}
+                            >
+                                Editar
+                            </Button>
+                            <Button
+                                variant="outlined"
+                                color="error"
+                                onClick={() => onDelete && onDelete(entry.id)}
+                            >
+                                Eliminar
+                            </Button>
+                        </Box>
 
                     </CardContent>
                 </Card>
