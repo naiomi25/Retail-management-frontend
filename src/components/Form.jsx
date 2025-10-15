@@ -116,7 +116,7 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
             </FormControl>
 
             <FormControl>
-              <FormLabel>Articulos</FormLabel>
+              <FormLabel>Artículos</FormLabel>
               <Input
                 type="number"
                 value={form.articles}
