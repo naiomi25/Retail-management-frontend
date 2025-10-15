@@ -12,6 +12,7 @@ import { EditEntry } from '../pages/EditEntry';
 
 
 
+
 export const EntriesList = ({ }) => {
 
 
@@ -59,6 +60,20 @@ export const EntriesList = ({ }) => {
         }
     };
 
+    const handleDelete = async (id) => {
+        const ok = window.confirm('¿Estás seguro de que quieres eliminar esta entrada?');
+        if (!ok) return;
+        try {
+          
+            await apiUser(`/entries/delete/${id}`, { method: 'DELETE' });
+            fetchEntries();
+        } catch (err) {
+            console.error(err);
+           
+            setError(err.message || 'Error al eliminar la entrada');
+        }
+    };
+
     return (
 
         <Stack spacing={2} sx={{ p: 2 }}>
@@ -95,7 +110,7 @@ export const EntriesList = ({ }) => {
             </Grid>
 
             {/* Entradas individuales */}
-            <Entries entries={entries} onEdit={setEditEntry} />
+            <Entries entries={entries} onEdit={setEditEntry} onDelete={handleDelete} />
 
 
             {loading && <Typography>Cargando...</Typography>}

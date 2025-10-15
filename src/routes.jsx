@@ -4,7 +4,6 @@ import {Login} from "./pages/Login";
 import {Register} from "./pages/Register";
 import Dashboard from "./pages/DashboardProfile";
 import {CreateEntry} from "./pages/CreateEntry";
-// import EditEntry from "./pages/EditEntry";
 import { Home } from "./pages/Home";
 
 export default function AppRoutes() {
@@ -19,7 +18,7 @@ export default function AppRoutes() {
       {/* <Route element={<PrivateLayout />}> */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/entries" element={<CreateEntry />} />
-        {/* <Route path="/edit-entry" element={<EditEntry />} /> */}
+        
       {/* </Route> */}
     </Routes>
   );
