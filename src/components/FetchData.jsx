@@ -9,6 +9,7 @@ import { Sums } from './Sums';
 import { Average } from './Averages';
 import { TotalsCards } from './TotalsCards';
 import { EditEntry } from '../pages/EditEntry';
+import { useEntries } from '../hooks/UseEntries';
 
 
 
@@ -21,39 +22,13 @@ export const EntriesList = ({ }) => {
     const [endDate, setEndDate] = useState(dayjs().format('YYYY-MM-DD'));
 
     const [editEntry, setEditEntry] = useState(null)
-    const [entries, setEntries] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState('')
-    const [totals, setTotals] = useState({ total_entries: 0, averages_by_shift: {}, sums_by_shift: {} });
-
-    const fetchEntries = async () => {
-
-        setLoading(true);
-        setError('');
-        try {
-
-            const data = await apiUser(`/entries/range/?start_date=${startDate}&end_date=${endDate}`)
-            setEntries(data.entries || [])
-            setTotals({
-                total_entries: data.total_entries || 0,
-                averages_by_shift: data.averages_by_shift || {},
-                sums_by_shift: data.sums_by_shift || {}
-            });
-            console.log('data del back-end', data);
-
-
-        } catch (err) {
-            console.error(err);
-            setError('Error al cargar las entradas');
-        } finally {
-            setLoading(false);
-        }
-    };
+    const { entries, loading, error, totals, fetchEntries, setError } = useEntries()
+  
     const handleEdit = (entry) => setEditEntry(entry);
     const handleSave = async (id, formData) => {
         try {
             await apiUser(`/entries/modify/${id}`, { method: 'PUT', body: formData });
-            fetchEntries(); 
+            fetchEntries(startDate, endDate);
         } catch (err) {
             console.error(err);
             setError('Error al actualizar la entrada');
@@ -64,12 +39,12 @@ export const EntriesList = ({ }) => {
         const ok = window.confirm('¿Estás seguro de que quieres eliminar esta entrada?');
         if (!ok) return;
         try {
-          
+
             await apiUser(`/entries/delete/${id}`, { method: 'DELETE' });
-            fetchEntries();
+            fetchEntries(startDate, endDate);
         } catch (err) {
             console.error(err);
-           
+
             setError(err.message || 'Error al eliminar la entrada');
         }
     };
@@ -86,7 +61,7 @@ export const EntriesList = ({ }) => {
                     <CalendarOnly value={endDate} onChange={(dateStr) => setEndDate(dateStr)} />
                 </Grid>
                 <Grid item xs={12} sm={2}>
-                    <Button fullWidth variant="contained" onClick={fetchEntries}>
+                    <Button fullWidth variant="contained" onClick={() => fetchEntries(startDate, endDate)}>
                         Buscar entradas
                     </Button>
                 </Grid>
@@ -116,7 +91,7 @@ export const EntriesList = ({ }) => {
             {loading && <Typography>Cargando...</Typography>}
             {error && <Typography color="error">{error}</Typography>}
             {editEntry && (
-                <EditEntry entry={editEntry}  open={!!editEntry} onClose={() => setEditEntry(null)} onSave={handleSave} />)}
+                <EditEntry entry={editEntry} open={!!editEntry} onClose={() => setEditEntry(null)} onSave={handleSave} />)}
         </Stack>
     );
 }
