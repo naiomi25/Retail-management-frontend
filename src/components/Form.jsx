@@ -20,7 +20,7 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
   const [form, setForm] = useState({
 
     date: initialData?.date || dayjs().format('YYYY-MM-DD'),
-    shift: initialData?.shift || 'morning',
+    shift: initialData?.shift || 'Morning',
     net_sales: initialData?.net_sales || '',
     transactions: initialData?.transactions || '',
     articles: initialData?.articles || '',
@@ -36,7 +36,7 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
     if (success && !initialData) {
       setForm({
         date: dayjs().format('YYYY-MM-DD'),
-        shift: "morning",
+        shift: "Morning",
         net_sales: 0,
         transactions: 0,
         articles: 0,

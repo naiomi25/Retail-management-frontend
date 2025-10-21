@@ -5,6 +5,8 @@ import {Register} from "./pages/Register";
 import Dashboard from "./pages/DashboardProfile";
 import {CreateEntry} from "./pages/CreateEntry";
 import { Home } from "./pages/Home";
+import React from 'react';
+
 
 export default function AppRoutes() {
   return (
