@@ -29,7 +29,7 @@ const PrivateLayout = () => {
   };
 
   const handleLogout = () => {
-    // Aquí borras JWT del localStorage o Context
+  
     localStorage.removeItem("token");
     navigate("/login");
   };
