@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
-import { CalendarOnly } from './calendar';
+import { DateSelector } from './Calendar2';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import FormControl from '@mui/joy/FormControl';
@@ -75,7 +75,7 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
             {showCalendar && (
               <FormControl>
                 <FormLabel>Fecha</FormLabel>
-                <CalendarOnly
+                <DateSelector
                   value={form.date}
                   onChange={(date) => setForm({ ...form, date })}
                 />
