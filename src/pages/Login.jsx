@@ -14,33 +14,8 @@ import Option from '@mui/joy/Option';
 import { useState } from "react";
 import { loginUser } from "../api/auth";
 import { useNavigate } from 'react-router-dom';
+import { ModeToggle } from '../components/common/ModeToggle';
 
-function ModeToggle() {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return <Button variant="soft">Change mode</Button>;
-  }
-
-  return (
-    <Select
-      variant="soft"
-      value={mode}
-      onChange={(event, newMode) => {
-        setMode(newMode);
-      }}
-      sx={{ width: 'max-content' }}
-    >
-      <Option value="light">Light</Option>
-      <Option value="dark">Dark</Option>
-    </Select>
-  );
-}
 
 export const Login = () => {
 
@@ -68,83 +43,86 @@ export const Login = () => {
   };
 
   return (
-    <CssVarsProvider>
-      <main>
-        <ModeToggle />
-        <CssBaseline />
-        <Sheet
-          sx={{
-            width: 300,
-            mx: 'auto',
-            my: 4,
-            py: 3,
-            px: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2,
-            borderRadius: 'sm',
-            boxShadow: 'md',
-          }}
-          variant="outlined"
-        >
-          <div>
-            <Typography level="h4" component="h1">
-              <b>Welcome!</b>
-            </Typography>
-            <Typography level="body-sm">Sign in to continue.</Typography>
-          </div>
-          <form onSubmit={handleLogin}>
-            <FormControl>
-              <FormLabel>Email</FormLabel>
-              <Input
-                name="email"
-                autoComplete="email"
-                label="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="johndoe@email.com"
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel>Password</FormLabel>
-              <Input
-                name="current-password"
-                autoComplete="current-password"
-                label="Password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </FormControl>
-            <Button
-              type="submit"
-              variant="solid"
-              sx={{
-                mt: 1,
-                backgroundColor: '#2ecc40',
-                color: 'white',
-                '&:hover': {
-                  backgroundColor: '#e622e6',
-                },
-              }}
-            >
-              Log in
-            </Button>
-          </form>
 
-          {error && (
-            <Typography sx={{ color: "red", fontSize: "sm" }}>
-              {error}
-            </Typography>
-          )}
-          <Typography
-            endDecorator={<Link href="/register">Sign up</Link>}
-            sx={{ fontSize: 'sm', alignSelf: 'center' }}
-          >
-            Don&apos;t have an account?
+    <main>
+
+      <div style={{ display: "flex", justifyContent: "flex-end", padding: "1rem" }}>
+        <ModeToggle />
+      </div>
+
+      <Sheet
+        sx={{
+          width: 300,
+          mx: 'auto',
+          my: 4,
+          py: 3,
+          px: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2,
+          borderRadius: 'sm',
+          boxShadow: 'md',
+        }}
+        variant="outlined"
+      >
+        <div>
+          <Typography level="h4" component="h1">
+            <b>Welcome!</b>
           </Typography>
-        </Sheet>
-      </main>
-    </CssVarsProvider>
+          <Typography level="body-sm">Sign in to continue.</Typography>
+        </div>
+        <form onSubmit={handleLogin}>
+          <FormControl>
+            <FormLabel>Email</FormLabel>
+            <Input
+              name="email"
+              autoComplete="email"
+              label="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="johndoe@email.com"
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Password</FormLabel>
+            <Input
+              name="current-password"
+              autoComplete="current-password"
+              label="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </FormControl>
+          <Button
+            type="submit"
+            variant="solid"
+            sx={{
+              mt: 1,
+              backgroundColor: '#2ecc40',
+              color: 'white',
+              '&:hover': {
+                backgroundColor: '#e622e6',
+              },
+            }}
+          >
+            Log in
+          </Button>
+        </form>
+
+        {error && (
+          <Typography sx={{ color: "red", fontSize: "sm" }}>
+            {error}
+          </Typography>
+        )}
+        <Typography
+          endDecorator={<Link href="/register">Sign up</Link>}
+          sx={{ fontSize: 'sm', alignSelf: 'center' }}
+        >
+          Don&apos;t have an account?
+        </Typography>
+      </Sheet>
+    </main>
+   
   );
 }
