@@ -1,8 +1,6 @@
-
-
-
+import { DateSelector } from './Calendar2';
 import dayjs from 'dayjs';
-import { CalendarOnly } from './calendar';
+import Box from '@mui/joy/Box';
 import { useState } from 'react';
 import { apiUser } from '../api/client';
 import { Button, Stack, Grid, Typography } from '@mui/joy';
@@ -45,21 +43,23 @@ export const EntriesList = () => {
   };
 
   return (
-    <Stack spacing={2} sx={{ p: 2 }}>
-      {/* Fechas y botón */}
-      <Grid container spacing={2} alignItems="center">
-        <Grid item xs={12} sm={5}>
-          <CalendarOnly value={startDate} onChange={(dateStr) => setStartDate(dateStr)} />
-        </Grid>
-        <Grid item xs={12} sm={5}>
-          <CalendarOnly value={endDate} onChange={(dateStr) => setEndDate(dateStr)} />
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <Button fullWidth variant="solid" color="primary" onClick={() => fetchEntries(startDate, endDate)}>
-            Buscar entradas
-          </Button>
-        </Grid>
-      </Grid>
+    <Stack spacing={1} sx={{ p: 1 }}>
+      <Box sx={{ display: "flex", flexWrap: "wrap",justifyContent: "flex-start",maxWidth: 600,alignItems: "center",mx: "auto",   mb: 2 }}   >
+        <Box sx={{ width: 250 }}>
+          <DateSelector value={startDate}onChange={(dateStr) => setStartDate(dateStr)} sx={{ width: "100%" }} />
+        </Box>
+        <Box sx={{ width: 250 }}>
+          <DateSelector value={endDate} onChange={(dateStr) => setEndDate(dateStr)}  sx={{ width: "100%" }}  />
+        </Box>
+        <Button
+          variant="solid"
+          color="primary"
+          sx={{ height: 36, width: 100 }}
+          onClick={() => fetchEntries(startDate, endDate)}
+        >
+          Buscar
+        </Button>
+      </Box>
 
       {/* Totales */}
       <Grid container spacing={2}>
