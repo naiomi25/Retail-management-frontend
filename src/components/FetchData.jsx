@@ -4,7 +4,6 @@ import Box from '@mui/joy/Box';
 import { useState } from 'react';
 import { apiUser } from '../api/client';
 import { Button, Stack, Grid, Typography } from '@mui/joy';
-
 import { Entries } from './Entries';
 import { Sums } from './Sums';
 import { Average } from './Averages';
