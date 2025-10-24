@@ -4,23 +4,26 @@ import { Card, CardContent, Typography } from "@mui/joy";
 export const TotalsCards = ({ total }) => (
   <Card
     variant="soft"
-    color="success"
+    
     sx={{
-      textAlign: "center",
-      p: 1,
+      display : 'flex',
+       alignItems: "center",
+      p: 2,
+      justifyContent: "space-between",
       borderRadius: 2,
-      boxShadow: 1,
-       maxWidth: 100,
+      boxShadow: "md",
+       maxWidth: 300,
         mx: "auto",
+         background: "background.level1", 
     }}
   >
-    <CardContent >
-      <Typography level="body-md" sx={{ mb: 1 }}>
-        Total de Entradas
+    
+      <Typography level="body-md" sx={{fontWeight: 500 ,color: "text.secondary" }}>
+         Entradas procesadas :
       </Typography>
-      <Typography level="h4" sx={{ fontWeight: "bold" }}>
+      <Typography level="h3" sx={{ fontWeight: "bold" , color: "primary.solidColor"}}>
         {total}
       </Typography>
-    </CardContent>
+    
   </Card>
 );
