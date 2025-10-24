@@ -10,7 +10,7 @@ import { Average } from './Averages';
 import { TotalsCards } from './TotalsCards';
 import { EditEntry } from '../pages/EditEntry';
 import { useEntries } from '../hooks/UseEntries';
-import { DailyCharts } from './Barchart';
+
 
 export const EntriesList = () => {
   const [startDate, setStartDate] = useState(dayjs().format('YYYY-MM-DD'));
@@ -80,7 +80,7 @@ export const EntriesList = () => {
       {/* Entradas individuales */}
       <Entries entries={entries} onEdit={handleEdit} onDelete={handleDelete} />
 
-      <DailyCharts data={entries} />
+      {/* <DailyCharts data={entries} /> */}
 
       {loading && <Typography>Cargando...</Typography>}
       {error && <Typography color="danger">{error}</Typography>}

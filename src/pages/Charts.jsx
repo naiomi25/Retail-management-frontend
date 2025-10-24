@@ -1,17 +1,14 @@
-
 import React from "react";
 import { Box,  Stack } from "@mui/joy";
-import { EntriesList } from "../components/FetchData";
+import { DailyCharts } from "../components/Barchart";
 
-const Dashboard = () => {
+export const Charts = () => {
   return (
     <Box sx={{ p: 2 }}>
       
       <Stack spacing={2}>
-        <EntriesList />
+        <DailyCharts />
       </Stack>
     </Box>
   );
 };
-
-export default Dashboard;

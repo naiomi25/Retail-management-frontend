@@ -1,25 +1,8 @@
 import { useState } from "react";
-import {
-    Typography,
-    Select,
-    Option,
-    Stack,
-    Card,
-    Grid,
-} from "@mui/joy";
-import {
-    ResponsiveContainer,
-    BarChart,
-    Bar,
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    Tooltip,
-    Legend,
-    CartesianGrid,
-} from "recharts";
-
+import {Typography, Select,Option, Card, Grid,} from "@mui/joy";
+import { ResponsiveContainer, BarChart, Bar,LineChart,  Line,  XAxis,  YAxis, Tooltip,  Legend,CartesianGrid,} from "recharts";
+import { useEntries } from "../hooks/UseEntries";
+   
 const AVAILABLE_FIELDS = [
     { key: "net_sales", label: "Net Sales", color: "#8884d8" },
     { key: "transactions", label: "Transactions", color: "#82ca9d" },
@@ -32,11 +15,12 @@ const AVAILABLE_FIELDS = [
     { key: "cr", label: "CR", color: "#ffa500" },
 ];
 
-export const DailyCharts = ({ data }) => {
+export const DailyCharts = () => {
     const [barFields, setBarFields] = useState(["net_sales"]);
     const [lineFields, setLineFields] = useState(["transactions"]);
+     const { entries} = useEntries();
 
-    const chartData = data.map(entry => ({
+    const chartData = entries.map(entry => ({
         date: entry.date,
         ...entry,
     }));
