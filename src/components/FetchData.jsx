@@ -43,17 +43,17 @@ export const EntriesList = () => {
 
   return (
     <Stack spacing={1} sx={{ p: 1 }}>
-      <Box sx={{ display: "flex", flexWrap: "wrap",justifyContent: "flex-start",maxWidth: 600,alignItems: "center",mx: "auto",   mb: 2 }}   >
+      <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "flex-start", maxWidth: 600, alignItems: "center", mx: "auto", mb: 2 }}   >
         <Box sx={{ width: 250 }}>
-          <DateSelector value={startDate}onChange={(dateStr) => setStartDate(dateStr)} sx={{ width: "100%" }} />
+          <DateSelector value={startDate} onChange={(dateStr) => setStartDate(dateStr)} sx={{ width: "100%" }} />
         </Box>
         <Box sx={{ width: 250 }}>
-          <DateSelector value={endDate} onChange={(dateStr) => setEndDate(dateStr)}  sx={{ width: "100%" }}  />
+          <DateSelector value={endDate} onChange={(dateStr) => setEndDate(dateStr)} sx={{ width: "100%" }} />
         </Box>
         <Button
           variant="solid"
           color="primary"
-          sx={{ height: 36, width: 100 }}
+          sx={{ height: 36, width: 100 ,backgroundColor: "background.level1",}}
           onClick={() => fetchEntries(startDate, endDate)}
         >
           Buscar
@@ -61,26 +61,33 @@ export const EntriesList = () => {
       </Box>
 
       {/* Totales */}
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={4}>
-          <TotalsCards total={totals.total_entries} />
-        </Grid>
-      </Grid>
+
+      
+
 
       {/* Promedios */}
-      <Grid container spacing={2}>
-        <Average average={totals.averages_by_shift} />
-      </Grid>
-
-      {/* Sumatorios */}
-      <Grid container spacing={2}>
-        <Sums sums={totals.sums_by_shift} />
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          justifyContent: "center",
+          alignItems: "flex-start",
+          mt: 2,
+        }}
+      >
+        <Grid item xs={12} md={6}>
+          <Average average={totals.averages_by_shift} />
+        </Grid>
+        <Grid item xs={12} md={6} >
+          <Sums sums={totals.sums_by_shift} />
+          <TotalsCards total={totals.total_entries} />
+        </Grid>
       </Grid>
 
       {/* Entradas individuales */}
       <Entries entries={entries} onEdit={handleEdit} onDelete={handleDelete} />
 
-      {/* <DailyCharts data={entries} /> */}
+     
 
       {loading && <Typography>Cargando...</Typography>}
       {error && <Typography color="danger">{error}</Typography>}

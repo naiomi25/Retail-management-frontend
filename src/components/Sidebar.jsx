@@ -7,6 +7,7 @@ import PostAddIcon from '@mui/icons-material/PostAdd';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import KeyboardDoubleArrowRightSharpIcon from '@mui/icons-material/KeyboardDoubleArrowRightSharp';
 import KeyboardDoubleArrowLeftSharpIcon from '@mui/icons-material/KeyboardDoubleArrowLeftSharp';
+import { ModeToggle } from "./common/ModeToggle";
 
 export const Sidebar = ({ open, onToggle }) => {
     const navigate = useNavigate()
@@ -21,9 +22,7 @@ export const Sidebar = ({ open, onToggle }) => {
                 p: 1,
             }}
         >
-            <Typography level="h6" sx={{ mb: 2 }}>
-                Sidebar
-            </Typography>
+            
 
             <Button variant="soft" onClick={onToggle}>
                 {open ? <KeyboardDoubleArrowLeftSharpIcon/>:< KeyboardDoubleArrowRightSharpIcon/>  }
@@ -83,6 +82,9 @@ export const Sidebar = ({ open, onToggle }) => {
                     <Typography level="h6" sx={{ mb:1 }}>
                         Graficas
                     </Typography>
+                </Box>
+                <Box>
+                   < ModeToggle/>
                 </Box>
             
 

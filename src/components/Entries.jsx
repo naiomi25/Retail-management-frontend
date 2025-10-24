@@ -86,8 +86,8 @@ export const Entries = ({ entries, onEdit, onDelete }) => {
               <Typography sx={{ flex: 1, textAlign: "center" }}>Average</Typography>
               <Typography sx={{ flex: 1, textAlign: "center" }}>UPT</Typography>
               <Typography sx={{ flex: 1, textAlign: "center" }}>CR</Typography>
-              {/* <Typography sx={{ width: 50, textAlign: "center" }}>Acc</Typography> */}
-              <Box sx={{ width:50, display: "flex", justifyContent: "center" }}>
+
+              <Box sx={{ width: 50, display: "flex", justifyContent: "center" }}>
                 <SettingsIcon fontSize="small" sx={{ color: 'neutral.500' }} />
               </Box>
             </Box>
@@ -130,7 +130,14 @@ export const Entries = ({ entries, onEdit, onDelete }) => {
                 >
                   <Typography sx={{ fontSize: "0.75rem", flex: 1, textAlign: "center" }}>{entry.date}</Typography>
                   <Box sx={{ width: 50, display: "flex", justifyContent: "center", alignItems: "center", }}>
-                    <Avatar sx={{ width: 22, height: 22, fontSize: "0.75rem" }}>
+                    <Avatar sx={{
+                      width: 22, height: 22, fontSize: "0.75rem", bgcolor:
+                        entry.shift?.toLowerCase().includes("morning")
+                          ? "#FFB300" : "#6A1B9A",
+                          
+                      color: "white",
+                    }}
+                    >
                       {entry.shift?.[0]?.toUpperCase()}
                     </Avatar>
                   </Box>
