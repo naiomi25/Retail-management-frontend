@@ -35,7 +35,7 @@ export const DateSelector = ({ value, onChange }) => {
         variant="outlined"
         sx={{
           backgroundColor: theme.vars.palette.background.surface,
-          input: { color: theme.vars.palette.text.primary },
+          input: { color: theme.vars.palette.text.secondary },
         }}
       />
 
@@ -49,7 +49,6 @@ export const DateSelector = ({ value, onChange }) => {
             left: 0,
             mt: 0.5,
             zIndex: 1000,
-            backgroundColor: theme.vars.palette.background.surface,
             borderRadius: "md",
             boxShadow: "md",
             p: 1,
@@ -61,12 +60,14 @@ export const DateSelector = ({ value, onChange }) => {
             onSelect={handleSelect}
             modifiersStyles={{
               selected: {
-                backgroundColor: theme.vars.palette.primary.solidBg,
-                color: theme.vars.palette.primary.solidColor,
+                backgroundColor: "#1d7c65ff",
+                color: "white",
+                borderRadius: "50%",
+                boxShadow: "0 0 0 2px #fff",
               },
               today: {
                 fontWeight: "bold",
-                color: theme.vars.palette.primary.solidColor,
+                color: "#1d7c65ff",
               },
             }}
           />

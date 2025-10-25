@@ -53,14 +53,14 @@ export const EntriesList = () => {
         <Button
           variant="solid"
           color="primary"
-          sx={{ height: 36, width: 100 ,backgroundColor: "background.level1",}}
+       
           onClick={() => fetchEntries(startDate, endDate)}
         >
           Buscar
         </Button>
       </Box>
 
-      {/* Totales */}
+    
 
       
 

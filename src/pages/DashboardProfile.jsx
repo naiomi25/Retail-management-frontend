@@ -4,6 +4,8 @@ import { Box,  Stack } from "@mui/joy";
 import { EntriesList } from "../components/FetchData";
 
 const Dashboard = () => {
+  
+  
   return (
     <Box sx={{ p: 2 }}>
       

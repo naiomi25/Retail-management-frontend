@@ -40,7 +40,7 @@ export const Home = () => {
       {/* Lado derecho: login */}
       <div className="home-right">
         <div className="frase-monitor">
-            Los datos son poder...<br />si sabes cómo organizarlos
+            Los datos son poder...<br />si sabes cómo organizarlos.
           </div>
           <div  className="form-container">
            {showLogin? ( <Login onSwitch={() => setShowLogin(false)} />

@@ -34,7 +34,7 @@ export const Average = ({ average }) => {
               sx={{
                 p: 2,
                 height: "100%",
-                borderRadius: 3,
+                borderRadius: 5,
                 boxShadow: "sm",
                 backgroundColor: bgColor,
                 transition: "all 0.3s ease",

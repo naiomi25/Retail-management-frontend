@@ -38,7 +38,7 @@ export const Sums = ({ sums }) => {
                 p: 2,
                 mb: 3,
                 height: "100%",
-                borderRadius: 3,
+                borderRadius: 5,
                 boxShadow: "sm",
                 backgroundColor: bgColor,
                 transition: "all 0.3s ease",

@@ -22,11 +22,23 @@ export const Sidebar = ({ open, onToggle }) => {
                 p: 1,
             }}
         >
-            
+
 
             <Button variant="soft" onClick={onToggle}>
-                {open ? <KeyboardDoubleArrowLeftSharpIcon/>:< KeyboardDoubleArrowRightSharpIcon/>  }
+                {open ? <KeyboardDoubleArrowLeftSharpIcon /> : < KeyboardDoubleArrowRightSharpIcon />}
             </Button>
+            <Box sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 2,
+                px: 2,
+                py: 1,
+                cursor: 'pointer',
+                transition: "all 0.3s ease",
+                
+            }}>
+                < ModeToggle />
+            </Box>
 
             <Box
                 onClick={() => navigate("/dashboard")}
@@ -37,12 +49,15 @@ export const Sidebar = ({ open, onToggle }) => {
                     px: 2,
                     py: 1,
                     cursor: 'pointer',
-                    borderRadius: 'md',
-                    '&:hover': { backgroundColor: 'background.level1' },
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                        transform: "translateY(-2px)",
+                        boxShadow: "md",
+                    }
                 }}
             >
                 <HomeOutlinedIcon />
-                <Typography level="h6" sx={{ mb: 1}}>
+                <Typography level="h6" sx={{ mb: 1 }}>
                     Dashboard
                 </Typography>
             </Box>
@@ -55,16 +70,19 @@ export const Sidebar = ({ open, onToggle }) => {
                     px: 2,
                     py: 1,
                     cursor: 'pointer',
-                    borderRadius: 'md',
-                    '&:hover': { backgroundColor: 'background.level1' },
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                        transform: "translateY(-2px)",
+                        boxShadow: "md",
+                    }
                 }}
             >
-                    <PostAddIcon />
-                    <Typography level="h6" sx={{ mb: 1}}>
-                        Nueva entrada
-                    </Typography>
-                </Box>
-           
+                <PostAddIcon />
+                <Typography level="h6" sx={{ mb: 1 }}>
+                    Nueva entrada
+                </Typography>
+            </Box>
+
             <Box
                 onClick={() => navigate("/charts")}
                 sx={{
@@ -74,19 +92,19 @@ export const Sidebar = ({ open, onToggle }) => {
                     px: 2,
                     py: 1,
                     cursor: 'pointer',
-                    borderRadius: 'md',
-                    '&:hover': { backgroundColor: 'background.level1' },
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                        transform: "translateY(-2px)",
+                        boxShadow: "md",
+                    }
                 }}
             >
-                    <BarChartIcon />
-                    <Typography level="h6" sx={{ mb:1 }}>
-                        Graficas
-                    </Typography>
-                </Box>
-                <Box>
-                   < ModeToggle/>
-                </Box>
-            
+                <BarChartIcon />
+                <Typography level="h6" sx={{ mb: 1 }}>
+                    Graficas
+                </Typography>
+            </Box>
+
 
         </Sheet>
     );

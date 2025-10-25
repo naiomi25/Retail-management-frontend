@@ -50,8 +50,8 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <CssVarsProvider>
-        <CssBaseline />
+      {/* <CssVarsProvider>
+        <CssBaseline /> */}
         <Sheet
           sx={{
             width: 400,
@@ -66,10 +66,7 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
             boxShadow: "md",
           }}
         >
-          <Typography level="h5" component="h2">
-            {initialData ? "Editar Entrada" : "Nueva Entrada"}
-
-          </Typography>
+          
 
           <Stack spacing={2}>
             {showCalendar && (
@@ -105,13 +102,14 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
             </FormControl>
 
             <FormControl>
-              <FormLabel>Transacciones</FormLabel>
+              <FormLabel >Transacciones</FormLabel>
               <Input
                 type="number"
                 value={form.transactions}
                 onChange={(e) =>
                   setForm({ ...form, transactions: Number(e.target.value) })
                 }
+              
               />
             </FormControl>
 
@@ -162,7 +160,7 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
 
           <Button type="submit">{initialData ? "Actualizar" : "Crear"}</Button>
         </Sheet>
-      </CssVarsProvider>
+      {/* </CssVarsProvider> */}
     </form>
   );
 };

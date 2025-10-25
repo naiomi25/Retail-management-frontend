@@ -10,15 +10,19 @@ export const TotalsCards = ({ total }) => (
       alignItems: "center",
       p: 1.5,
       justifyContent: "space-between",
-      borderRadius: 2,
-
-      maxWidth: 250,
+      borderRadius: 8,
+      maxWidth: 230,
       mx: "auto",
-      background: "background.level1",
+      backgroundColor :'#4fe4bfff',
+       transition: "all 0.3s ease",
+                "&:hover": {
+                  transform: "translateY(-4px)",
+                  boxShadow: "md",
+                },
     }}
   >
 
-    <Typography level="body-md" sx={{ fontWeight: 500, color: "text.secondary" }}>
+    <Typography level="body-md" sx={{ fontWeight: 500, color: 'black' }}>
       Entradas procesadas :  <Typography component="span" sx={{ fontWeight: 600 }}> {total}</Typography>
     </Typography>
     

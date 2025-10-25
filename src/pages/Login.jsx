@@ -35,7 +35,7 @@ export const Login = ({ onSwitch }) => {
       }
       setError(null);
       console.log("Token recibido:", data.access_token);
-      navigate('/');
+      navigate("/welcome");
     } catch (err) {
       setError('Correo o contraseña incorrecta, por favor vuelve a intentarlo');
     }

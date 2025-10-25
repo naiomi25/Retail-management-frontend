@@ -4,10 +4,11 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App"; 
 import { CssVarsProvider,CssBaseline} from "@mui/joy";
 import "./index.css";
+import theme from './theme';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <CssVarsProvider>
+    <CssVarsProvider theme={theme}>
        <CssBaseline />
     <BrowserRouter>
       <App />
