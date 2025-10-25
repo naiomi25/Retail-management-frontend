@@ -12,12 +12,12 @@ import { useNavigate } from 'react-router-dom';
 import { ModeToggle } from '../components/common/ModeToggle';
 
 
-export const Register = () => {
+export const Register = ({onSwitch}) => {
   const [form, setForm] = useState({
     user_name: "",
     email: "",
     password: "",
-    name: ""
+    // name: ""
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -33,13 +33,13 @@ export const Register = () => {
       if (response.access_token) {
         localStorage.setItem("token", response.access_token);
         setSuccess("Registro exitoso. Sesión iniciada.");
-        navigate('/login')
+        navigate('/home')
       } else {
         setSuccess("Registro exitoso.");
       }
       setForm({ user_name: "", email: "", password: "", name: "" });
     } catch (err) {
-      setError(err.message || "Error al registrar.");
+      setError("Error en el registro." || err.message);
     }
   };
 
@@ -47,7 +47,7 @@ export const Register = () => {
 
     <main>
       <div style={{ display: "flex", justifyContent: "flex-end", padding: "1rem" }}>
-        <ModeToggle />
+
       </div>
 
       <Sheet
@@ -62,40 +62,37 @@ export const Register = () => {
           gap: 2,
           borderRadius: 'sm',
           boxShadow: 'md',
+          background: 'linear-gradient(90deg, #fbfefbff, #7af4cfff)',
+          textShadow: '1px 1px 2px rgba(0,0,0,0.2)',
         }}
         variant="outlined"
       >
         <div>
-          <Typography level="h4" component="h1">
-            <b>Sign up!</b>
+          <Typography level="h4" component="h1"sx={{ color: '#06352eff' }}>
+            <b>Nuevo registro</b>
           </Typography>
-          <Typography level="body-sm">Create an account to continue.</Typography>
+         
         </div>
 
-        <FormControl>
-          <FormLabel>Nombre</FormLabel>
-          <Input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            placeholder="Tu nombre"
-            required
-          />
-        </FormControl>
+
 
         <FormControl>
-          <FormLabel>Usuario</FormLabel>
+          <FormLabel  sx={{ color: '#06352eff' }}>Usuario</FormLabel>
           <Input
             name="user_name"
             value={form.user_name}
             onChange={handleChange}
             placeholder="Nombre de usuario"
             required
+            sx={{
+                backgroundColor: '#1d7c65ff',
+                borderRadius: 8,
+              }}
           />
         </FormControl>
 
         <FormControl>
-          <FormLabel>Email</FormLabel>
+          <FormLabel sx={{ color: '#06352eff' }}>Email</FormLabel>
           <Input
             name="email"
             type="email"
@@ -103,11 +100,15 @@ export const Register = () => {
             onChange={handleChange}
             placeholder="email@dominio.com"
             required
+            sx={{
+                backgroundColor: '#1d7c65ff',
+                borderRadius: 8,
+              }}
           />
         </FormControl>
 
         <FormControl>
-          <FormLabel>Password</FormLabel>
+          <FormLabel sx={{ color: '#06352eff' }}>Password</FormLabel>
           <Input
             name="password"
             type="password"
@@ -115,6 +116,10 @@ export const Register = () => {
             onChange={handleChange}
             placeholder="Contraseña"
             required
+            sx={{
+                backgroundColor: '#1d7c65ff',
+                borderRadius: 8,
+              }}
           />
         </FormControl>
 
@@ -122,21 +127,33 @@ export const Register = () => {
           onClick={handleSubmit}
           variant="solid"
           sx={{
-            mt: 1,
-            backgroundColor: '#2ecc40',
-            color: 'white',
-            '&:hover': { backgroundColor: '#e622e6' },
-          }}
+              mt: 1,
+              backgroundColor: '#1d7c65ff',
+              color: 'white',
+              '&:hover': {
+                backgroundColor: ' #114430ff',
+              },
+            }}
         >
-          Sign up
+          Continuar
         </Button>
+        <Typography
+          sx={{ fontSize: 'sm', alignSelf: 'center', mt: 1 }}
+        >
+          <Link
+            component="button"
+            onClick={onSwitch}
+            sx={{ color: '#08433aff', textDecoration: 'underline', cursor: 'pointer' }}
+          >
+            Ya tienes cuenta?
+             Inicia sesión
+          </Link>
+        </Typography>
 
         {error && <Typography sx={{ color: "red", fontSize: "sm" }}>{error}</Typography>}
         {success && <Typography sx={{ color: "green", fontSize: "sm" }}>{success}</Typography>}
 
-        <Typography endDecorator={<Link href="/login">Sign in</Link>} sx={{ fontSize: 'sm', alignSelf: 'center' }}>
-          Already have an account?
-        </Typography>
+
       </Sheet>
     </main>
 
