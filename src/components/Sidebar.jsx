@@ -8,10 +8,18 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import KeyboardDoubleArrowRightSharpIcon from '@mui/icons-material/KeyboardDoubleArrowRightSharp';
 import KeyboardDoubleArrowLeftSharpIcon from '@mui/icons-material/KeyboardDoubleArrowLeftSharp';
 import { ModeToggle } from "./common/ModeToggle";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 
-export const Sidebar = ({ open, onToggle }) => {
+export const Sidebar = ({ open, onToggle}) => {
+    
     const navigate = useNavigate()
+      const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
     return (
+
         <Sheet
             sx={{
                 width: open ? 200 : 60,
@@ -19,11 +27,13 @@ export const Sidebar = ({ open, onToggle }) => {
                 backgroundColor: "background.level1",
                 display: "flex",
                 flexDirection: "column",
+                 justifyContent: "space-between",
+                height: "100vh",
                 p: 1,
             }}
         >
 
-
+ <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
             <Button variant="soft" onClick={onToggle}>
                 {open ? <KeyboardDoubleArrowLeftSharpIcon /> : < KeyboardDoubleArrowRightSharpIcon />}
             </Button>
@@ -35,7 +45,7 @@ export const Sidebar = ({ open, onToggle }) => {
                 py: 1,
                 cursor: 'pointer',
                 transition: "all 0.3s ease",
-                
+
             }}>
                 < ModeToggle />
             </Box>
@@ -104,8 +114,29 @@ export const Sidebar = ({ open, onToggle }) => {
                     Graficas
                 </Typography>
             </Box>
-
-
+</Box>
+            <Box
+        onClick={handleLogout}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: 2,
+          px: 1.5,
+          py: 1,
+          borderRadius: "sm",
+          cursor: "pointer",
+          "&:hover": {
+            backgroundColor: "danger.softBg",
+            color: "danger.plainColor",
+          },
+          transition: "all 0.3s ease",
+        }}
+      >
+        <LogoutRoundedIcon />
+        {open && <Typography level="body-md">Logout</Typography>}
+      </Box>
         </Sheet>
+
+
     );
 };

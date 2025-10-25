@@ -13,7 +13,7 @@ export const TotalsCards = ({ total }) => (
       borderRadius: 8,
       maxWidth: 230,
       mx: "auto",
-      backgroundColor :'#4fe4bfff',
+      backgroundColor :'#065f49ff',
        transition: "all 0.3s ease",
                 "&:hover": {
                   transform: "translateY(-4px)",

@@ -19,7 +19,7 @@
 /* Div que representa la pantalla del monitor */
 .pantalla {
   position: absolute;
-  top: 8%;     
+  top: 5%;     
   left: 17%;
   width: 45%;    
   height: 50%;

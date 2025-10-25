@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { DateSelector } from './Calendar2';
-import Stack from '@mui/joy/Stack';
-import Typography from '@mui/joy/Typography';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import Input from '@mui/joy/Input';
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
-import Button from '@mui/joy/Button';
-import { CssVarsProvider, } from '@mui/joy/styles';
-import Sheet from "@mui/joy/Sheet";
-import CssBaseline from "@mui/joy/CssBaseline";
+
+import {
+  Stack,
+  Typography,
+  FormControl,
+  FormLabel,
+  Input,
+  Select,
+  Option,
+  Button,
+  Sheet,
+  Box,
+  Grid
+} from "@mui/joy";
 
 
 
@@ -49,47 +52,52 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
 
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* <CssVarsProvider>
-        <CssBaseline /> */}
-        <Sheet
-          sx={{
-            width: 400,
-            mx: "auto",
-            my: 4,
-            py: 3,
-            px: 2,
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            borderRadius: "sm",
-            boxShadow: "md",
-          }}
-        >
-          
+     <form onSubmit={handleSubmit}>
+      <Sheet
+        sx={{
+          width: "90%",
+          maxWidth: 700,
+          mx: "auto",
+          my: 4,
+          p: 4,
+          display: "flex",
+          flexDirection: "column",
+          gap: 3,
+          borderRadius: "lg",
+          boxShadow: "lg",
+          backgroundColor: "background.surface",
+          color: "black"
+        }}
+      >
+        
 
-          <Stack spacing={2}>
-            {showCalendar && (
-              <FormControl>
-                <FormLabel>Fecha</FormLabel>
-                <DateSelector
-                  value={form.date}
-                  onChange={(date) => setForm({ ...form, date })}
-                />
-              </FormControl>
-            )}
-
-            <FormControl>
-              <FormLabel>Turno</FormLabel>
-              <Select
-                value={form.shift}
-                onChange={(e, value) => setForm({ ...form, shift: value })}
-              >
-                <Option value="morning">Morning</Option>
-                <Option value="evening">Evening</Option>
-              </Select>
+        {/* Fecha y turno lado a lado */}
+        <Box sx={{ display: "flex", gap: 2, justifyContent: "center" }}>
+          {showCalendar && (
+            <FormControl sx={{ flex: 1 }}>
+              <FormLabel>Fecha</FormLabel>
+              <DateSelector
+                value={form.date}
+                onChange={(date) => setForm({ ...form, date })}
+              />
             </FormControl>
+          )}
 
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Turno</FormLabel>
+            <Select
+              value={form.shift}
+              onChange={(e, value) => setForm({ ...form, shift: value })}
+            >
+              <Option value="Morning">Mañana</Option>
+              <Option value="Evening">Tarde</Option>
+            </Select>
+          </FormControl>
+        </Box>
+
+        {/* Campos divididos en dos columnas */}
+        <Grid container spacing={2}>
+          <Grid xs={12} sm={6}>
             <FormControl>
               <FormLabel>Ventas netas</FormLabel>
               <Input
@@ -98,18 +106,25 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
                 onChange={(e) =>
                   setForm({ ...form, net_sales: Number(e.target.value) })
                 }
+                    sx={{
+                color: "black",
+                "& .MuiSelect-button": { color: "black" },
+              }}
               />
             </FormControl>
 
             <FormControl>
-              <FormLabel >Transacciones</FormLabel>
+              <FormLabel>Transacciones</FormLabel>
               <Input
                 type="number"
                 value={form.transactions}
                 onChange={(e) =>
                   setForm({ ...form, transactions: Number(e.target.value) })
                 }
-              
+                    sx={{
+                color: "black",
+                "& .MuiSelect-button": { color: "black" },
+              }}
               />
             </FormControl>
 
@@ -121,9 +136,15 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
                 onChange={(e) =>
                   setForm({ ...form, articles: Number(e.target.value) })
                 }
+                    sx={{
+                color: "black",
+                "& .MuiSelect-button": { color: "black" },
+              }}
               />
             </FormControl>
+          </Grid>
 
+          <Grid xs={12} sm={6}>
             <FormControl>
               <FormLabel>Accesorios</FormLabel>
               <Input
@@ -132,6 +153,10 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
                 onChange={(e) =>
                   setForm({ ...form, accessories: Number(e.target.value) })
                 }
+                    sx={{
+                color: "black",
+                "& .MuiSelect-button": { color: "black" },
+              }}
               />
             </FormControl>
 
@@ -143,6 +168,10 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
                 onChange={(e) =>
                   setForm({ ...form, apparel: Number(e.target.value) })
                 }
+                    sx={{
+                color: "black",
+                "& .MuiSelect-button": { color: "black" },
+              }}
               />
             </FormControl>
 
@@ -154,13 +183,22 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
                 onChange={(e) =>
                   setForm({ ...form, footfall: Number(e.target.value) })
                 }
+                    sx={{
+                color: "black",
+                "& .MuiSelect-button": { color: "black" },
+              }}
               />
             </FormControl>
-          </Stack>
+          </Grid>
+        </Grid>
 
-          <Button type="submit">{initialData ? "Actualizar" : "Crear"}</Button>
-        </Sheet>
-      {/* </CssVarsProvider> */}
+        {/* Botón centrado abajo */}
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
+          <Button size="lg" type="submit" variant="solid" color="primary">
+            {initialData ? "Actualizar" : "Crear"}
+          </Button>
+        </Box>
+      </Sheet>
     </form>
   );
 };
