@@ -4,7 +4,7 @@ import { DailyCharts } from "../components/Barchart";
 
 export const Charts = () => {
   return (
-    <Box sx={{    p: 2, ml: 10
+    <Box sx={{ p: 1, ml: 10
         }}>
       
       <Stack spacing={2}>

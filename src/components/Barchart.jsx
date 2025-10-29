@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Typography, Select, Option, Card, Grid, Box, Button } from "@mui/joy";
 import { ResponsiveContainer, BarChart, Bar, LineChart, Line, XAxis, YAxis, Tooltip, Legend, CartesianGrid, } from "recharts";
 import { useEntries } from "../hooks/UseEntries";
-import dayjs from "dayjs";
+
 import { DateSelector } from "./Calendar2";
 
 const AVAILABLE_FIELDS = [
@@ -51,7 +51,7 @@ export const DailyCharts = () => {
     );
 
     return (
-        <Box sx={{ p: 2, maxWidth: 1200, mx: "auto", pl: 8,  }}>
+        <Box sx={{ p: 2, maxWidth: 1200, mx: "auto", pl: 1,  }}>
             <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "flex-start", maxWidth: 600, alignItems: "center", mx: "auto", mb: 2 }}   >
                 <Box sx={{ width: 250 }}>
                     <DateSelector value={startDate} onChange={(dateStr) => setStartDate(dateStr)} sx={{ width: "100%" }} />

@@ -31,17 +31,21 @@ const theme = extendTheme({
     },
   },
 
-  components: {
+   components: {
     JoyInput: {
       styleOverrides: {
         root: {
-          backgroundColor: '#60e8c6ff',
+          backgroundColor: '#1d7c65ff', 
           borderRadius: 8,
+          color: 'white', 
           '&:hover': {
             backgroundColor: '#0bad85ff',
           },
           '&:focus-within': {
             backgroundColor: '#6cf4d4ff',
+          },
+          '& input': {
+            color: 'black', 
           },
         },
       },

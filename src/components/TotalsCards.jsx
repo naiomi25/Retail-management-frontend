@@ -1,5 +1,5 @@
 
-import { Card, CardContent, Typography } from "@mui/joy";
+import { Card, Typography } from "@mui/joy";
 
 export const TotalsCards = ({ total }) => (
   <Card

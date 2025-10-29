@@ -26,8 +26,10 @@ return(
 
   <div>
       <h1>Nueva entrada</h1>
-      <EntryForm onSubmit={handleEntry} />  
-      {message && <p>{message}</p>}
+      
+      <EntryForm onSubmit={handleEntry} message={message} />  
+      {/* {message && <p>{message}</p>} */}
+      
   </div>
   );
 

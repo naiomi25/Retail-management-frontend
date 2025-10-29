@@ -24,7 +24,7 @@ export const DateSelector = ({ value, onChange }) => {
 
   return (
     <Box sx={{ position: "relative", width: 150 }}>
-      {/* Input para mostrar la fecha */}
+      
       <Input
         ref={inputRef}
         value={selectedDate}

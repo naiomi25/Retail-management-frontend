@@ -3,6 +3,9 @@ import WbSunnyRoundedIcon from "@mui/icons-material/WbSunnyRounded";
 import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 
 export const Average = ({ average }) => {
+   if (!average || Object.keys(average).length === 0) {
+    return null; 
+  }
  
 
   return (
@@ -28,7 +31,7 @@ export const Average = ({ average }) => {
         const iconColor = titleColor;
 
         return (
-          <Grid item xs={12} sm={6} md={6} key={`avg-${shift}`}>
+          <Grid  xs={12} sm={6} md={6} key={`avg-${shift}`}>
             <Card
               variant="soft"
               sx={{

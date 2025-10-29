@@ -27,7 +27,7 @@ export const Navbar = ({ onToggleSidebar }) => {
                 borderColor: 'divider',
             }}
         >
-            {/* Icono de casita + nombre de la página */}
+           
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <HomeIcon />
                 <Typography level="h6"> - {pagesName}</Typography>

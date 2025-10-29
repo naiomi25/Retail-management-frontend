@@ -1,7 +1,7 @@
 import { DateSelector } from './Calendar2';
 import dayjs from 'dayjs';
 import Box from '@mui/joy/Box';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { apiUser } from '../api/client';
 import { Button, Stack, Grid, Typography } from '@mui/joy';
 import { Entries } from './Entries';
@@ -17,6 +17,11 @@ export const EntriesList = () => {
   const [endDate, setEndDate] = useState(dayjs().format('YYYY-MM-DD'));
   const [editEntry, setEditEntry] = useState(null);
   const { entries, loading, error, totals, fetchEntries, setError } = useEntries();
+
+  // DEBUG: mostrar totals en consola para detectar claves/duplicados
+  useEffect(() => {
+    console.log('DEBUG totals from useEntries:', totals);
+  }, [totals]);
 
   const handleEdit = (entry) => setEditEntry(entry);
   const handleSave = async (id, formData) => {
@@ -75,10 +80,10 @@ export const EntriesList = () => {
           mt: 2,
         }}
       >
-        <Grid item xs={12} md={6}>
+        <Grid  xs={12} md={6}>
           <Average average={totals.averages_by_shift} />
         </Grid>
-        <Grid item xs={12} md={6} >
+        <Grid  xs={12} md={6} >
           <Sums sums={totals.sums_by_shift} />
           <TotalsCards total={totals.total_entries} />
         </Grid>

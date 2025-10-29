@@ -1,8 +1,6 @@
 
 import * as React from 'react';
-
 import Sheet from "@mui/joy/Sheet";
-
 import Typography from '@mui/joy/Typography';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
@@ -31,15 +29,21 @@ export const Login = ({ onSwitch }) => {
 
       if (data.access_token) {
         localStorage.setItem("token", data.access_token);
+        if (data.user) {
+          localStorage.setItem("user", JSON.stringify(data.user));
+        }
         setToken(data.access_token);
       }
+
       setError(null);
       console.log("Token recibido:", data.access_token);
-      navigate("/welcome");
+      // pass user object via navigation state so WelcomeView can update immediately
+      navigate("/welcome", { state: { user: data.user } });
     } catch (err) {
       setError('Correo o contraseña incorrecta, por favor vuelve a intentarlo');
     }
   };
+
 
   return (
 
@@ -137,7 +141,7 @@ export const Login = ({ onSwitch }) => {
             Nuevo usuario
           </Link>
         </Typography>
-      
+
       </Sheet>
     </main>
 

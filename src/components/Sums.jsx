@@ -6,18 +6,14 @@ import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 
 
 export const Sums = ({ sums }) => {
+
+    if (!sums || Object.keys(sums).length === 0) {
+    return null; // o <Typography>No hay datos disponibles</Typography>
+  }
  
   return (
-    <Grid
-      container
-      spacing={2}
-      sx={{
-        justifyContent: "center",
-        alignItems: "stretch",
-        mt: 2,
-        mb:3
-      }}
-    >
+    <Grid container spacing={2} sx={{ justifyContent: "center", alignItems: "stretch", mt: 2, mb: 3 }}>
+    
       {Object.entries(sums).map(([shift, sum]) => {
         const isMorning =
           shift.toLowerCase().includes("mañana") ||
@@ -31,7 +27,7 @@ export const Sums = ({ sums }) => {
         const iconColor = titleColor;
 
         return (
-          <Grid item xs={12} sm={6} md={6} key={`sum-${shift}`}>
+          <Grid  xs={12} sm={6} md={6} key={`sum-${shift}`}>
             <Card
               variant="soft"
               sx={{

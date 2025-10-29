@@ -1,6 +1,7 @@
 import { Box, Card, Typography, Button } from "@mui/joy";
 
 import { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import { keyframes } from "@emotion/react";
 
 // Frases aleatorias
@@ -25,9 +26,27 @@ const typingAnimation = keyframes`
   to { width: 100%; }
 `;
 
-export const WelcomeView = ({ userName }) => {
-  
+export const WelcomeView = () => {
+
   const [fraseRandom, setFraseRandom] = useState("");
+  const [userName, setUserName] = useState("");
+  const location = useLocation();
+
+  useEffect(() => {
+
+    const navUser = location?.state?.user;
+    if (navUser && navUser.user_name) {
+      setUserName(navUser.user_name);
+     
+      try { localStorage.setItem('user', JSON.stringify(navUser)); } catch (e) { }
+      return;
+    }
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user?.user_name) setUserName(user.user_name);
+  }, []);
+
+
 
   useEffect(() => {
     const index = Math.floor(Math.random() * FRASES.length);
@@ -65,11 +84,11 @@ export const WelcomeView = ({ userName }) => {
           textShadow: "0px 2px 8px rgba(0,0,0,0.3)",
         }}
       >
-        ¡Bienvenido/a, {userName || "usuario"}!
+        ¡Hola de nuevo, {userName || "usuario"}!
       </Typography>
 
       <Card
-       
+
       >
         <Typography
           level="h6"
@@ -86,7 +105,7 @@ export const WelcomeView = ({ userName }) => {
         </Typography>
       </Card>
 
-     
+
     </Box>
   );
 };

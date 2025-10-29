@@ -2,23 +2,11 @@ import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { DateSelector } from './Calendar2';
 
-import {
-  Stack,
-  Typography,
-  FormControl,
-  FormLabel,
-  Input,
-  Select,
-  Option,
-  Button,
-  Sheet,
-  Box,
-  Grid
-} from "@mui/joy";
+import { FormControl, FormLabel, Input, Select, Option, Button, Sheet, Box, Grid,Typography } from "@mui/joy";
 
 
 
-export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
+export const EntryForm = ({ initialData, onSubmit, showCalendar = true, message }) => {
 
   const [form, setForm] = useState({
 
@@ -52,7 +40,7 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
 
 
   return (
-     <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Sheet
         sx={{
           width: "90%",
@@ -69,7 +57,7 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
           color: "black"
         }}
       >
-        
+
 
         {/* Fecha y turno lado a lado */}
         <Box sx={{ display: "flex", gap: 2, justifyContent: "center" }}>
@@ -106,10 +94,10 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
                 onChange={(e) =>
                   setForm({ ...form, net_sales: Number(e.target.value) })
                 }
-                    sx={{
-                color: "black",
-                "& .MuiSelect-button": { color: "black" },
-              }}
+                sx={{
+                  color: "black",
+                  "& .MuiSelect-button": { color: "black" },
+                }}
               />
             </FormControl>
 
@@ -121,10 +109,10 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
                 onChange={(e) =>
                   setForm({ ...form, transactions: Number(e.target.value) })
                 }
-                    sx={{
-                color: "black",
-                "& .MuiSelect-button": { color: "black" },
-              }}
+                sx={{
+                  color: "black",
+                  "& .MuiSelect-button": { color: "black" },
+                }}
               />
             </FormControl>
 
@@ -136,10 +124,10 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
                 onChange={(e) =>
                   setForm({ ...form, articles: Number(e.target.value) })
                 }
-                    sx={{
-                color: "black",
-                "& .MuiSelect-button": { color: "black" },
-              }}
+                sx={{
+                  color: "black",
+                  "& .MuiSelect-button": { color: "black" },
+                }}
               />
             </FormControl>
           </Grid>
@@ -153,10 +141,10 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
                 onChange={(e) =>
                   setForm({ ...form, accessories: Number(e.target.value) })
                 }
-                    sx={{
-                color: "black",
-                "& .MuiSelect-button": { color: "black" },
-              }}
+                sx={{
+                  color: "black",
+                  "& .MuiSelect-button": { color: "black" },
+                }}
               />
             </FormControl>
 
@@ -168,10 +156,10 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
                 onChange={(e) =>
                   setForm({ ...form, apparel: Number(e.target.value) })
                 }
-                    sx={{
-                color: "black",
-                "& .MuiSelect-button": { color: "black" },
-              }}
+                sx={{
+                  color: "black",
+                  "& .MuiSelect-button": { color: "black" },
+                }}
               />
             </FormControl>
 
@@ -183,10 +171,10 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
                 onChange={(e) =>
                   setForm({ ...form, footfall: Number(e.target.value) })
                 }
-                    sx={{
-                color: "black",
-                "& .MuiSelect-button": { color: "black" },
-              }}
+                sx={{
+                  color: "black",
+                  "& .MuiSelect-button": { color: "black" },
+                }}
               />
             </FormControl>
           </Grid>
@@ -196,8 +184,15 @@ export const EntryForm = ({ initialData, onSubmit, showCalendar = true }) => {
         <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
           <Button size="lg" type="submit" variant="solid" color="primary">
             {initialData ? "Actualizar" : "Crear"}
+
           </Button>
         </Box>
+        {message && (
+          <Typography level="body-sm" color="success" sx={{ mt: 1 }}>
+            {message}
+          </Typography>
+        )}
+
       </Sheet>
     </form>
   );

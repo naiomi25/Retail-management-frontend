@@ -9,7 +9,7 @@ import Link from '@mui/joy/Link';
 import { useState } from "react";
 import { registerUser } from "../api/auth";
 import { useNavigate } from 'react-router-dom';
-import { ModeToggle } from '../components/common/ModeToggle';
+
 
 
 export const Register = ({onSwitch}) => {
@@ -17,7 +17,7 @@ export const Register = ({onSwitch}) => {
     user_name: "",
     email: "",
     password: "",
-    // name: ""
+    name: ""
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -46,7 +46,7 @@ export const Register = ({onSwitch}) => {
   return (
 
     <main>
-      <div style={{ display: "flex", justifyContent: "flex-end", padding: "1rem" }}>
+      <div style={{ display: "flex", justifyContent: "flex-end"}}>
 
       </div>
 
@@ -54,12 +54,12 @@ export const Register = ({onSwitch}) => {
         sx={{
           width: 300,
           mx: 'auto',
-          my: 4,
-          py: 3,
+          my: 3,
+          py: 2,
           px: 2,
           display: 'flex',
           flexDirection: 'column',
-          gap: 2,
+          gap: 0.5,
           borderRadius: 'sm',
           boxShadow: 'md',
           background: 'linear-gradient(90deg, #fbfefbff, #7af4cfff)',
@@ -68,31 +68,39 @@ export const Register = ({onSwitch}) => {
         variant="outlined"
       >
         <div>
-          <Typography level="h4" component="h1"sx={{ color: '#06352eff' }}>
+          <Typography level="h4" component="h1" sx={{ color: '#06352eff', mb: 0.5 }}>
             <b>Nuevo registro</b>
           </Typography>
-         
         </div>
 
 
 
         <FormControl>
-          <FormLabel  sx={{ color: '#06352eff' }}>Usuario</FormLabel>
+          <FormLabel sx={{ color: '#06352eff' }} >Usuario</FormLabel>
           <Input
             name="user_name"
             value={form.user_name}
             onChange={handleChange}
             placeholder="Nombre de usuario"
             required
-            sx={{
-                backgroundColor: '#1d7c65ff',
-                borderRadius: 8,
-              }}
+            
           />
         </FormControl>
 
         <FormControl>
-          <FormLabel sx={{ color: '#06352eff' }}>Email</FormLabel>
+          <FormLabel sx={{ color: '#06352eff' }}>Nombre completo</FormLabel>
+          <Input
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Tu nombre"
+            required
+           
+          />
+        </FormControl>
+
+        <FormControl>
+          <FormLabel sx={{ color: '#06352eff' }} >Email</FormLabel>
           <Input
             name="email"
             type="email"
@@ -100,10 +108,7 @@ export const Register = ({onSwitch}) => {
             onChange={handleChange}
             placeholder="email@dominio.com"
             required
-            sx={{
-                backgroundColor: '#1d7c65ff',
-                borderRadius: 8,
-              }}
+            
           />
         </FormControl>
 
@@ -116,10 +121,7 @@ export const Register = ({onSwitch}) => {
             onChange={handleChange}
             placeholder="Contraseña"
             required
-            sx={{
-                backgroundColor: '#1d7c65ff',
-                borderRadius: 8,
-              }}
+            
           />
         </FormControl>
 
@@ -128,17 +130,12 @@ export const Register = ({onSwitch}) => {
           variant="solid"
           sx={{
               mt: 1,
-              backgroundColor: '#1d7c65ff',
-              color: 'white',
-              '&:hover': {
-                backgroundColor: ' #114430ff',
-              },
             }}
         >
           Continuar
         </Button>
         <Typography
-          sx={{ fontSize: 'sm', alignSelf: 'center', mt: 1 }}
+          sx={{ fontSize: 'sm', alignSelf: 'center', mt: 1,}}
         >
           <Link
             component="button"
@@ -148,8 +145,8 @@ export const Register = ({onSwitch}) => {
             Ya tienes cuenta?
              Inicia sesión
           </Link>
-        </Typography>
 
+        </Typography>
         {error && <Typography sx={{ color: "red", fontSize: "sm" }}>{error}</Typography>}
         {success && <Typography sx={{ color: "green", fontSize: "sm" }}>{success}</Typography>}
 
