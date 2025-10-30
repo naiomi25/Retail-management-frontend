@@ -1,26 +1,31 @@
 
-import { Card, CardContent, Typography } from "@mui/joy";
+import { Card, Typography } from "@mui/joy";
 
 export const TotalsCards = ({ total }) => (
   <Card
     variant="soft"
-    color="success"
+
     sx={{
-      textAlign: "center",
-      p: 1,
-      borderRadius: 2,
-      boxShadow: 1,
-       maxWidth: 100,
-        mx: "auto",
+      display: 'flex',
+      alignItems: "center",
+      p: 1.5,
+      justifyContent: "space-between",
+      borderRadius: 8,
+      maxWidth: 230,
+      mx: "auto",
+      backgroundColor :'#065f49ff',
+       transition: "all 0.3s ease",
+                "&:hover": {
+                  transform: "translateY(-4px)",
+                  boxShadow: "md",
+                },
     }}
   >
-    <CardContent >
-      <Typography level="body-md" sx={{ mb: 1 }}>
-        Total de Entradas
-      </Typography>
-      <Typography level="h4" sx={{ fontWeight: "bold" }}>
-        {total}
-      </Typography>
-    </CardContent>
+
+    <Typography level="body-md" sx={{ fontWeight: 500, color: 'black' }}>
+      Entradas procesadas :  <Typography component="span" sx={{ fontWeight: 600 }}> {total}</Typography>
+    </Typography>
+    
+
   </Card>
 );

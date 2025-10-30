@@ -69,7 +69,7 @@ Construir una aplicación web completa para la gestión y visualización de entr
 
 ### **Fase 7: Opcional / Avanzado**
 - [ ] Exportar datos (CSV / PDF).
-- [ ] Control de acceso según rol (admin / usuario).
+
 
 
 ---

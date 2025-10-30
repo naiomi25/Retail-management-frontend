@@ -1,11 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-// import PrivateLayout from "./components/Layout";
+import {Layout} from "./components/Layout";
 import {Login} from "./pages/Login";
 import {Register} from "./pages/Register";
 import Dashboard from "./pages/DashboardProfile";
+import { WelcomeView } from "./pages/Welcome";
 import {CreateEntry} from "./pages/CreateEntry";
 import { Home } from "./pages/Home";
 import React from 'react';
+import { Charts } from "./pages/Charts";
 
 
 export default function AppRoutes() {
@@ -17,11 +19,13 @@ export default function AppRoutes() {
       <Route path="/register" element={<Register />} /> 
 
       
-      {/* <Route element={<PrivateLayout />}> */}
+      <Route element={<Layout />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/entries" element={<CreateEntry />} />
+          <Route path="/charts" element={< Charts />} />
+          <Route path="/welcome" element={< WelcomeView />} /> 
         
-      {/* </Route> */}
+      </Route>
     </Routes>
   );
 }

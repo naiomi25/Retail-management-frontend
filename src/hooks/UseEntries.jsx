@@ -1,5 +1,5 @@
 
-
+import dayjs from "dayjs";
 import { useState } from "react";
 import { apiUser } from "../api/client";
 
@@ -8,6 +8,8 @@ export const useEntries = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
     const [totals, setTotals] = useState({ total_entries: 0, averages_by_shift: {}, sums_by_shift: {} });
+    const [startDate, setStartDate] = useState(dayjs().format("YYYY-MM-DD"));
+    const [endDate, setEndDate] = useState(dayjs().format("YYYY-MM-DD"));
 
     const fetchEntries = async (startDate, endDate) => {
 
@@ -32,7 +34,7 @@ export const useEntries = () => {
             setLoading(false);
         }
     };
-    
+
     return {
         entries,
         loading,
@@ -40,7 +42,11 @@ export const useEntries = () => {
         setError,
         totals,
         setEntries,
-        fetchEntries
+        fetchEntries,
+        startDate,   
+        setStartDate,
+        endDate,    
+        setEndDate
     };
 
 

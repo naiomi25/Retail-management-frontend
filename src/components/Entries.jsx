@@ -1,17 +1,8 @@
 
 import React from "react";
 import { useState } from "react";
-import {
-  Box, Card, CardContent,
-  Typography,
-  IconButton,
-  Dropdown,
-  Menu,
-  MenuButton,
-  MenuItem,
-  Divider,
-  Avatar, ListItemDecorator
-} from "@mui/joy";
+import { Box, Card, CardContent, Typography,
+  IconButton,  Dropdown, Menu,MenuButton,  MenuItem,Divider, Avatar } from "@mui/joy";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
@@ -45,12 +36,18 @@ export const Entries = ({ entries, onEdit, onDelete }) => {
           justifyContent: "space-between",
           px: 2,
           py: 1,
-          backgroundColor: "background.level2",
-          cursor: "pointer",
-        }}
+          backgroundColor: '#1d7c65ff',
+          borderRadius: 8,
+          '&:hover': {
+            backgroundColor: '#1a6e59',
+          },
+          '&:focus-within': {
+            backgroundColor: '#145c4b',
+          },}}
+       
         onClick={() => setExpanded(!expanded)}
       >
-        <Typography level="title-md" fontWeight="lg">Entradas</Typography>
+        <Typography level="title-md" fontWeight="lg" >Entradas</Typography>
         <IconButton size="sm">
           {expanded ? <ExpandLessRoundedIcon /> : <ExpandMoreRoundedIcon />}
         </IconButton>
@@ -70,7 +67,7 @@ export const Entries = ({ entries, onEdit, onDelete }) => {
                 py: 0.5,
                 fontSize: "0.8rem",
                 fontWeight: 600,
-                borderBottom: "1px solid",
+                borderBottom: "2px solid",
                 borderColor: "divider",
                 color: "text.secondary",
               }}
@@ -86,8 +83,8 @@ export const Entries = ({ entries, onEdit, onDelete }) => {
               <Typography sx={{ flex: 1, textAlign: "center" }}>Average</Typography>
               <Typography sx={{ flex: 1, textAlign: "center" }}>UPT</Typography>
               <Typography sx={{ flex: 1, textAlign: "center" }}>CR</Typography>
-              {/* <Typography sx={{ width: 50, textAlign: "center" }}>Acc</Typography> */}
-              <Box sx={{ width:50, display: "flex", justifyContent: "center" }}>
+
+              <Box sx={{ width: 50, display: "flex", justifyContent: "center" }}>
                 <SettingsIcon fontSize="small" sx={{ color: 'neutral.500' }} />
               </Box>
             </Box>
@@ -98,7 +95,7 @@ export const Entries = ({ entries, onEdit, onDelete }) => {
                 width: 6,
               },
               "&::-webkit-scrollbar-thumb": {
-                backgroundColor: "rgba(100,100,100,0.4)",
+                backgroundColor: "rgba(6, 126, 104, 0.4)",
                 borderRadius: 3,
               },
               "&::-webkit-scrollbar-thumb:hover": {
@@ -130,7 +127,14 @@ export const Entries = ({ entries, onEdit, onDelete }) => {
                 >
                   <Typography sx={{ fontSize: "0.75rem", flex: 1, textAlign: "center" }}>{entry.date}</Typography>
                   <Box sx={{ width: 50, display: "flex", justifyContent: "center", alignItems: "center", }}>
-                    <Avatar sx={{ width: 22, height: 22, fontSize: "0.75rem" }}>
+                    <Avatar sx={{
+                      width: 22, height: 22, fontSize: "0.75rem", bgcolor:
+                        entry.shift?.toLowerCase().includes("morning")
+                          ? "#f1f1a1ff" : "#c78becff",
+                          
+                      color: "black",
+                    }}
+                    >
                       {entry.shift?.[0]?.toUpperCase()}
                     </Avatar>
                   </Box>

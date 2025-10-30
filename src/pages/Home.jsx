@@ -1,33 +1,57 @@
-
-import { Link } from 'react-router-dom';
-import { Button, Stack } from '@mui/joy';
+import React, { useState } from 'react';
+import fondoPortada from '../assets/img_home.png';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer ,Legend} from 'recharts';
+import { Login } from './Login';
+import { Register } from './Register';
+const data = [
+  { name: 'Enero', Ventas: 12, Gastos: 8  },
+  { name: 'Febrero', Ventas: 19, Gastos: 15  },
+  { name: 'Marzo', Ventas: 7, Gastos: 5 },
+];
 
 export const Home = () => {
+
+  const [showLogin,setShowLogin] = useState(true)
+
   return (
-    <Stack spacing={2} sx={{ p: 2 }}>
-      <Link to="/dashboard" style={{ textDecoration: 'none' }}>
-        <Button variant="solid" color="primary">
-          Dashboard
-        </Button>
-      </Link>
+    <div className="home-container">
+      {/* Lado izquierdo: imagen de fondo */}
+      <div
+        className="home-left"
+        style={{ backgroundImage: `url(${fondoPortada})` }}
+      >
+        {/* Monitor con gráfico */}
+        <div className="pantalla">
+          
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={data} margin={{ top: 20, right: 20, bottom: 40, left: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend verticalAlign="top" height={36} />
+              <Bar dataKey="Ventas" fill="rgba(187, 244, 202, 0.8)" animationDuration={2000} />
+               <Bar dataKey="Gastos" fill="rgba(247, 153, 58, 0.8)" animationDuration={2000} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
 
-      <Link to="/login" style={{ textDecoration: 'none' }}>
-        <Button variant="solid" color="primary">
-          Login
-        </Button>
-      </Link>
-
-      <Link to="/register" style={{ textDecoration: 'none' }}>
-        <Button variant="solid" color="primary">
-          Register
-        </Button>
-      </Link>
-
-      <Link to="/entries" style={{ textDecoration: 'none' }}>
-        <Button variant="solid" color="primary">
-          Nueva entrada
-        </Button>
-      </Link>
-    </Stack>
+      {/* Lado derecho: login */}
+      <div className="home-right">
+        <div className="frase-monitor">
+            Los datos son poder...<br />si sabes cómo organizarlos.
+          </div>
+          <div  className="form-container">
+           {showLogin? ( <Login onSwitch={() => setShowLogin(false)} />
+    ) : (
+      <Register onSwitch={() => setShowLogin(true)} />
+    )}
+          </div>
+        
+      </div>
+    </div>
   );
 };
+
+
